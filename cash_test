@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+float get_positive_float(string prompt);
+int coins, quater, dime, nickel, penny, count;
+float dollars;
+
+int main(void)
+
+{
+    dollars = get_positive_float("Change owned: ");
+    coins = round(dollars * 100);
+    count = 0;
+    quater = 25;   
+
+    while (coins >= quater)
+    {
+        count++;
+        coins -= quater;
+    }
+    dime = 10;
+    while (coins >= dime)
+    {
+        count++;
+        coins -= dime;
+    }
+    nickel = 5;
+    while (coins >= nickel)
+    {
+        count++;
+        coins -= nickel;
+    }
+    penny = 1;
+    while (coins >= penny)
+    {
+        count++;
+        coins -= penny;
+    }
+
+    printf("%d\n", count);
+}
+
+float get_positive_float(string prompt)
+{
+    float n;
+    do
+    {
+        n = get_float("%s", prompt);
+    }
+    while (n < 0 || n == 0);
+    return n;
+}
