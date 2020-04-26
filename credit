@@ -2,8 +2,8 @@
 #include <cs50.h>
 #include <math.h>
 
-long inp_nmb, dgts;
-int count, a, b;
+long inp_nmb, dgts, n, o, p;
+int count, a, b, m, mm, A, AA, B, C;
 int main(void)
 
 {
@@ -12,33 +12,44 @@ int main(void)
 
     // count digits in a card number
     count = 0;
-    while (inp_nmb > 0)
+    n = inp_nmb;
+    while (n > 0)
     {
-        inp_nmb = inp_nmb / 10;
+        n = n / 10;
         count++;
     }
 
     // myltiply by 2 second-to-last digit
     dgts = inp_nmb;
+    A = dgts / pow(10,12);
+    AA = dgts / pow(10,13);
+    B = dgts / pow(10,14);
+    C = dgts / pow(10,15);
+    m = A % 10;
+    mm = AA % 100;
+    o = B % 10;
+    p = C % 10;
     dgts = dgts / 10;
-    if (count == 13)
+    if ((count == 13 && m == 4) || (count == 16 && p == 4))
     {
-        while (dgts > 0)
-        {
-            a = dgts % 10;
-            b = a * 2;
-        }
-        printf("%i\n", b);
+ //       while (dgts > 0)
+ //       {
+  //          a = dgts % 10;
+  //          b = a * 2;
+  //      }
+  //      return 0;
+   //     printf("%i\n", b);
+        printf("VISA\n");
     }
     
-    else if (count == 15)   
+    else if (count == 15 && (mm == 34 || mm == 37))   
     {
-        printf("AMEX\n");
+       printf("AMEX\n");
     }
      
-    else if (count == 16)
+    else if ((count == 16 && p == 5) && (o >= 1 && o <= 5))
     {
-        printf("16\n");
+        printf("MASTERCARD\n");
     }
  
     else
