@@ -2,8 +2,8 @@
 #include <cs50.h>
 #include <math.h>
 
-long inp_nmb, dgts, n, o, p;
-int count, a, b, m, mm, A, AA, B, C;
+long inp_nmb, dgts, n, o, p, first_d;
+int count, a, b, c, m, mm, A, AA, B, C, sum_2;
 int main(void)
 
 {
@@ -21,6 +21,7 @@ int main(void)
 
     // myltiply by 2 second-to-last digit
     dgts = inp_nmb;
+    first_d = inp_nmb;
     A = dgts / pow(10,12);
     AA = dgts / pow(10,13);
     B = dgts / pow(10,14);
@@ -30,16 +31,16 @@ int main(void)
     o = B % 10;
     p = C % 10;
     dgts = dgts / 10;
+    c = first_d % 10;
     if ((count == 13 && m == 4) || (count == 16 && p == 4))
     {
- //       while (dgts > 0)
- //       {
-  //          a = dgts % 10;
-  //          b = a * 2;
-  //      }
-  //      return 0;
-   //     printf("%i\n", b);
-        printf("VISA\n");
+    while (first_d > 0)
+    {
+        sum_2 = sum_2 + c;
+        first_d = first_d / 100;
+    }
+        
+        printf("%i\n", sum_2);
     }
     
     else if (count == 15 && (mm == 34 || mm == 37))   
