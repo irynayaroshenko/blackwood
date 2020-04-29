@@ -34,6 +34,7 @@ int main(void)
     c = first_d % 10;
     if ((count == 13 && m == 4) || (count == 16 && p == 4))
     {
+    // add every other digit together starting with the inp_numb last digit
     while (first_d > 0)
     {
         sum_2 = sum_2 + c;
